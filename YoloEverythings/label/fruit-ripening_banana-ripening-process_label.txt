@@ -1,0 +1,6 @@
+freshripe_[fruit-ripening/banana-ripening-process]
+freshunripe_[fruit-ripening/banana-ripening-process]
+overripe_[fruit-ripening/banana-ripening-process]
+ripe_[fruit-ripening/banana-ripening-process]
+rotten_[fruit-ripening/banana-ripening-process]
+unripe_[fruit-ripening/banana-ripening-process]

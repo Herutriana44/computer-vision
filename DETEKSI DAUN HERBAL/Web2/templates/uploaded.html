@@ -1,0 +1,57 @@
+{% include "header.html" %}
+{% block content %}
+
+    <table>
+        <tr>
+            <th>Hasil Gambar</th>
+        </tr>
+        <tr>
+            <center><td><img src="{{ url_for('static', filename='uploads/' + filename) }}"></td></center>
+        </tr>
+    </table>
+    <br/>
+    <br/>
+    <center>
+        <div class="kotak-prediksi">
+            <h1>Hasil Prediksi KNN</h1>
+            <!-- <textarea cols="60" rows="5" readonly>{{result['knn_prediction']}}</textarea> -->
+            <br/>
+            <h1>Ekstraksi Fitur</h1>
+            <style>
+                .feature table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                .feature th, td {
+                    border: 1px solid #dddddd;
+                    text-align: center;
+                    padding: 8px;
+                }
+
+                .feature th {
+                    background-color: var(--second);
+                }
+            </style>
+            <table class="feature">
+                <tr>
+                    <th>Feature Name</th>
+                    <th>Feature Value</th>
+                    <th>Predict</th>
+                </tr>
+                {% for feature in features %}
+                    <tr>
+                        <td>{{ features_name[loop.index] }}</td>
+                        <td>
+                            {{ all_features[loop.index] }}
+                            <br>
+                            {{ feature }}
+                        </td>
+                        <td><textarea cols="60" rows="5" readonly>{{result[features_name[loop.index]]}}</textarea></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </center>
+    <br/>
+{% endblock %}

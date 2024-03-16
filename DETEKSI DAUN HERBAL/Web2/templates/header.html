@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasifikasi Daun Herbal</title>
+    <style>
+            :root {
+                --first : #F1EFEF;
+                --second : #191717; 
+                --third : #CCC8AA;
+                --fourth : #7D7C7C;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--first);
+            }
+
+            header {
+                background-color: var(--second);
+                color: var(--first);
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+            }
+
+
+            footer {
+                background-color: var(--second);
+                color: var(--first);
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                position: relative;
+                /* posisikan footer paling bawah */
+                bottom: 0;
+                text-align: center;
+                margin-top: auto;
+                width: 100%;
+            }
+
+            img {
+                width: 50%;
+                height: 50%;
+            }
+            
+            table {
+                text-align: center;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+            border: 1px solid var(--second);
+            padding: 8px;
+            text-align: center;
+            }
+
+            th {
+                background-color: var(--second);
+                color: var(--first);
+            }
+
+            .kotak-prediksi {
+                background-color: var(--second);
+                color: var(--first);
+            }
+
+            textarea {
+                resize: none;
+                background-color: var(--first);
+            }
+
+            .uploadGambar {
+                background-color: var(--second);
+                color: var(--first);
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                width: 50%;
+                margin: auto;
+            }
+
+            #file {
+                background-color: var(--first);
+                color: var(--second);
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                width: 50%;
+                margin: auto;
+            }
+
+            #unggah {
+                background-color: var(--first);
+                color: var(--second);
+                padding: 10px;
+                text-align: center;
+                font-size: 20px;
+                width: 50%;
+                margin: auto;
+            }
+    </style>
+</head>
+<body>
+    <!-- <center>
+        <header>
+            <h1>Klasifikasi Dada Ayam</h1>
+            <p>Web ini digunakan untuk prediksi gambar dada ayam untuk mendeteksi kesegaran dada ayam</p>
+            <a href="{{ url_for('index') }}">Home</a>
+        </header>
+        <br/>
+    </center> -->

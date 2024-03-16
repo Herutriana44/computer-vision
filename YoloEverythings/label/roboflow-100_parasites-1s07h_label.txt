@@ -1,0 +1,8 @@
+Ancylostoma Spp_[roboflow-100/parasites-1s07h]
+Ascaris Lumbricoides_[roboflow-100/parasites-1s07h]
+Enterobius Vermicularis_[roboflow-100/parasites-1s07h]
+Fasciola Hepatica_[roboflow-100/parasites-1s07h]
+Hymenolepis_[roboflow-100/parasites-1s07h]
+Schistosoma_[roboflow-100/parasites-1s07h]
+Taenia Sp_[roboflow-100/parasites-1s07h]
+Trichuris Trichiura_[roboflow-100/parasites-1s07h]

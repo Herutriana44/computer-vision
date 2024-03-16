@@ -1,0 +1,166 @@
+{% include 'head.html' %}
+
+{% if session.logged_in %}
+<script>
+    function startTraining() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/train');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.querySelector('#training-output').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+</script>
+    <div class="container">
+        <h1 class="text-center my-5">Manajemen Pegawai</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form id="add-pegawai-form" name="add-pegawai-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="id">ID:</label>
+                        <input type="number" class="form-control" id="id" name="id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gambar">Gambar:</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Simpan</button>
+                </form>
+                
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pegawai in pegawai_list %}
+                        <tr>
+                            <td>{{ pegawai.id }}</td>
+                            <td>{{ pegawai.nama }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_pegawai', pegawai_id=pegawai.id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ url_for('Hapus_Pegawai', pegawai_id=pegawai.id) }}" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi Penambahan Pegawai</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin menambahkan pegawai ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" onclick="submitAddPegawaiForm()" data-bs-dismiss="modal">Ya, Tambahkan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="loadingModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Training Model</h5>
+            </div>
+            <div class="modal-body">
+              <p>Sedang melatih model, mohon tunggu...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center my-5">Anda harus login terlebih dahulu!</h1>
+                <p class="text-center"><a href="{{ url_for('admin_login') }}">Klik di sini</a> untuk login.</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+</body>
+<script>
+    function submitAddPegawaiForm() {
+        var form = document.getElementById('add-pegawai-form');
+        var formData = new FormData(form);
+        fetch('/pegawai/add', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        location.reload();
+    } else {
+        alert('Gagal menambahkan pegawai');
+    }
+})
+.then(() => {
+    return fetch('/train'); // Sesuaikan dengan URL endpoint yang mengembalikan Response(build_model(), content_type="text/plain")
+})
+.then(response => response.text())
+.then(text => {
+    alert(text);
+});
+}
+$(document).ready(function() {
+  // Fungsi untuk menambahkan pegawai
+  function addEmployee() {
+    // Tampilkan modal loading
+    $('#loadingModal').modal('show');
+
+    // Kirim permintaan ke server untuk menambahkan pegawai
+    $.ajax({
+      url: '/add-employee', // Sesuaikan dengan URL endpoint yang menambahkan pegawai
+      type: 'POST',
+      success: function(response) {
+        // Sembunyikan modal loading saat proses selesai
+        $('#loadingModal').modal('hide');
+        // Tampilkan pesan sukses atau lakukan tindakan lain
+      },
+      error: function() {
+        // Sembunyikan modal loading jika terjadi kesalahan
+        $('#loadingModal').modal('hide');
+        alert('Terjadi kesalahan saat menambahkan pegawai');
+      }
+    });
+  }
+
+  // Jalankan fungsi addEmployee saat tombol 'Ya, Tambahkan' diklik
+  $('#confirmAddEmployee').click(function() {
+    // Tutup modal konfirmasi
+    $('#confirmationModalLabel').modal('hide');
+    // Tambahkan pegawai
+    addEmployee();
+  });
+});
+</script>
+</html>

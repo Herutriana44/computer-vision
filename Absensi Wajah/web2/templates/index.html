@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Absensi dengan Foto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Web Absensi dengan Foto</h1>
+        <div class="text-center my-5">Klik Tombol <button id="snap" class="btn btn-primary">Ambil Foto</button> atau tekan tombol Enter atau Spasi</div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <button id="snap" class="btn btn-primary w-100 my-3">Ambil Foto</button>
+                <video id="video" width="640" height="480" autoplay class="w-100"></video>
+                <canvas id="canvas" width="640" height="480"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultModalLabel">Hasil Prediksi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="resultText"></p>
+                    <img id="resultImage" width="100%" alt="Hasil Prediksi">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script> 
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Enter' || event.code === 'Space') {
+                event.preventDefault(); // Prevent default behavior, like scrolling for Space key
+                snap.click(); // Trigger the click event on the snap button
+            }
+        });
+
+        var video = document.getElementById('video');
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        var snap = document.getElementById('snap');
+        var result_image = document.getElementById('result_image');
+        var resultText = document.getElementById('resultText');
+        var resultImage = document.getElementById('resultImage');
+        var resultModal = new bootstrap.Modal(document.getElementById('resultModal'));
+
+        navigator.mediaDevices.getUserMedia({video: true})
+            .then(function(stream) {
+                video.srcObject = stream;
+            })
+            .catch(function(err) {
+                console.log("Something went wrong!", err);
+            });
+
+        snap.addEventListener('click', function() {
+            context.drawImage(video, 0, 0, 640, 480);
+            var img_data = canvas.toDataURL('image/png');
+            $.ajax({
+                type: 'POST',
+                url: '/predict',
+                data: {
+                    'image': img_data
+                },
+                success: function(response) {
+                    resultText.textContent = response.result;
+                    resultImage.src = 'data:image/jpeg;base64,' + response.image;
+                    resultModal.show();
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

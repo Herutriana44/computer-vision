@@ -1,0 +1,4 @@
+G-arboreum_[roboflow-100/cotton-20xz5]
+G-barbadense_[roboflow-100/cotton-20xz5]
+G-herbaceum_[roboflow-100/cotton-20xz5]
+G-hirsitum_[roboflow-100/cotton-20xz5]

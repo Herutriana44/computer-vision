@@ -1,0 +1,23 @@
+{% include 'head.html' %}
+    {% if session.logged_in %}
+    <div class="container">
+        <h1>Edit Pegawai</h1>
+        <form action="{{ url_for('update_pegawai', pegawai_id=idpegawai) }}" method="POST">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ pegawai[1] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center my-5">Anda harus login terlebih dahulu!</h1>
+                    <p class="text-center"><a href="{{ url_for('admin_login') }}">Klik di sini</a> untuk login.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>

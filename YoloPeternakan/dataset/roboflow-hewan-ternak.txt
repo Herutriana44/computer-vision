@@ -1,0 +1,12 @@
+hewan1-yosi/sapi-arl5s
+iqra-university-gutcj/weight-detection-ucy7b
+buffallo/kerbausekmentasi
+buffallo/deteksikerbau
+beproject/chickendetection-video
+magnus-gabriel-xlevw/chicken-detection-s1tjy
+hasanuddin-university-03fyu/bebek_detection
+hasanuddin-university-03fyu/deteksi-entog
+raisul-islam-abir/yolov8-egg-detection
+team3-ohd3p/goat-weight-prediction
+bodetech/disease-goat
+animalface/goat-detector

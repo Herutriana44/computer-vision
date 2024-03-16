@@ -1,0 +1,41 @@
+{% include 'head.html' %}
+
+    <div class="container">
+        <h1>Data Absen</h1>
+        <form id="filter-form" method="get" class="form-inline mb-3">
+            <label for="filter_date" class="mr-2">Filter Tanggal:</label>
+            <input type="date" id="filter_date" name="filter_date" class="form-control mr-2">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+        <button class="btn btn-primary" onclick="exportTableToExcel()">Cetak</button>
+        <table class="table table-bordered table-striped" id="absen-table" >
+            <thead>
+                <tr>
+                    <th>ID Pegawai</th>
+                    <th>Nama</th>
+                    <th>Tanggal</th>
+                    <th>Absen Masuk</th>
+                    <th>Absen Keluar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for absen in absen_data %}
+                    <tr>
+                        <td>{{ absen[0] }}</td>
+                        <td>{{ absen[1] }}</td>
+                        <td>{{ absen[2] }}</td>
+                        <td>{{ absen[3] }}</td>
+                        <td>{{ absen[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function exportTableToExcel() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(document.getElementById('absen-table'));
+            XLSX.utils.book_append_sheet(wb, ws, 'Absen');
+            XLSX.writeFile(wb, 'absen.xlsx');
+        }
+    </script>

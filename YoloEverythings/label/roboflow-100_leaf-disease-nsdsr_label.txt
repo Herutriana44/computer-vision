@@ -1,0 +1,3 @@
+mildew_[roboflow-100/leaf-disease-nsdsr]
+rose_P01_[roboflow-100/leaf-disease-nsdsr]
+rose_R02_[roboflow-100/leaf-disease-nsdsr]

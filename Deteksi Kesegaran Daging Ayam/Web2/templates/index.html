@@ -1,0 +1,11 @@
+{% include "header.html" %}
+{% block content %}
+    <div class="uploadGambar">
+        <h1>Upload Gambar</h1>
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file"><br><br>
+            <input type="submit" value="Unggah" id="unggah">
+        </form>
+    </div>
+{% endblock %}
+{% include "footer.html" %}

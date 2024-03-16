@@ -1,0 +1,2 @@
+close_[roboflow-100/stomata-cells]
+open_[roboflow-100/stomata-cells]

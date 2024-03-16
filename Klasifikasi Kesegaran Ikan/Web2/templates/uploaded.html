@@ -1,0 +1,48 @@
+{% include "header.html" %}
+{% block content %}
+    <table>
+        <tr>
+            <th>Gambar Original</th>
+            <th>Gambar HSV</th>
+        </tr>
+        <tr>
+            <td><img src="{{ url_for('static', filename='uploads/' + filename) }}"></td>
+            <td><img src="{{ url_for('static', filename='uploads/' + hsv_image) }}"></td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <th>Mean_H</th>
+            <th>Mean_S</th>
+            <th>Mean_V</th>
+            <th>Mean_R</th>
+            <th>Mean_G</th>
+            <th>Mean_B</th>
+        </tr>
+        <tr>
+            <td>{{mean_values['mean_h']}}</td>
+            <td>{{mean_values['mean_s']}}</td>
+            <td>{{mean_values['mean_v']}}</td>
+            <td>{{mean_values['mean_r']}}</td>
+            <td>{{mean_values['mean_g']}}</td>
+            <td>{{mean_values['mean_b']}}</td>
+        </tr>
+    </table>
+    <br/>
+    <center>
+        <div class="kotak-prediksi">
+            <h1>Hasil Prediksi KNN</h1>
+            <textarea cols="60" rows="5" readonly>{{result['knn_prediction']}}{{result['knn_prob']}}</textarea>
+            <br/>
+        </div>
+
+        <div class="kotak-prediksi">
+            <h1>Hasil Prediksi CNN</h1>
+            <textarea cols="60" rows="5" readonly>{{result['cnn_prediction']}}{{result['cnn_prob']}}</textarea>
+            <br/>
+        </div>
+    </center>
+    <br/>
+    {% endblock %}
+{% include "footer.html" %}

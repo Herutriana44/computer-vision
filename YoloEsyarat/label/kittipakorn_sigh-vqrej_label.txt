@@ -1,0 +1,7 @@
+AI
+hand_language
+hello
+testing
+thank_you
+this_is
+translate

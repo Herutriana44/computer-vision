@@ -1,0 +1,48 @@
+{% include "header.html" %}
+{% block content %}
+    <table>
+        <tr>
+            <th>Gambar Original</th>
+            <th>Gambar HSV</th>
+        </tr>
+        <tr>
+            <td><img src="{{ url_for('static', filename='uploads/' + filename) }}"></td>
+            <td><img src="{{ url_for('static', filename='uploads/' + hsv_image) }}"></td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+            <th>Mean_H</th>
+            <td>{{mean_values['mean_h']}}</td>
+          </tr>
+          <tr>
+            <th>Mean_S</th>
+            <td>{{mean_values['mean_s']}}</td>
+          </tr>
+          <tr>
+            <th>Mean_V</th>
+            <td>{{mean_values['mean_v']}}</td>
+          </tr>
+          <tr>
+            <th>Mean_R</th>
+            <td>{{mean_values['mean_r']}}</td>
+          </tr>
+          <tr>
+            <th>Mean_G</th>
+            <td>{{mean_values['mean_g']}}</td>
+          </tr>
+          <tr>
+            <th>Mean_B</th>
+            <td>{{mean_values['mean_b']}}</td>
+          </tr>
+          <tr>
+            <th>Hasil Prediksi CNN</th>
+            <td>
+                <textarea cols="60" rows="5" readonly>{{result['cnn_prediction']}}{{result['cnn_prob']}}</textarea>
+            </td>
+          </tr>
+    </table>
+    <br>
+    {% endblock %}
+{% include "footer.html" %}

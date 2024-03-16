@@ -1,0 +1,3 @@
+Early_blight_[potato-blight/mask-rcnn-zgho6]
+Late_blight_[potato-blight/mask-rcnn-zgho6]
+Leaf_[potato-blight/mask-rcnn-zgho6]

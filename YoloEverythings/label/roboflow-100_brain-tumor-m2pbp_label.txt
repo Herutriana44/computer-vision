@@ -1,0 +1,3 @@
+label0_[roboflow-100/brain-tumor-m2pbp]
+label1_[roboflow-100/brain-tumor-m2pbp]
+label2_[roboflow-100/brain-tumor-m2pbp]

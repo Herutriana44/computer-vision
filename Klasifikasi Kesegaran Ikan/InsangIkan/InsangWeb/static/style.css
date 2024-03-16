@@ -1,0 +1,291 @@
+:root {
+    --primary-color: #D14D72;
+    --secondary-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+header h1 {
+    margin-top: 0;
+    font-size: 48px;
+}
+
+header p {
+    margin-bottom: 0;
+    font-size: 24px;
+}
+
+header a {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+header a:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+    /* posisikan footer paling bawah */
+    bottom: 0;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+}
+
+img {
+    width: 50%;
+    height: 50%;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.kotak-prediksi {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+textarea {
+    resize: none;
+    background-color: var(--secondary-color);
+}
+
+.uploadGambar {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    width: 30%;
+    margin: auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.uploadGambar:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.uploadGambar:hover #unggah:hover {
+    background-color: #FEF2F4;
+    color: #D14D72;
+}
+
+#file {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    width: 50%;
+    margin: auto;
+}
+
+#file-label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#unggah {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #D14D72;
+    color: #FEF2F4;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center
+}
+
+#unggah:hover {
+    background-color: #FEF2F4;
+    color: #D14D72;
+    border: 2px solid #D14D72;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+}
+
+.navbar-brand {
+    color: var(--secondary-color);
+    font-size: 24px;
+}
+
+.nav-link {
+    color: white;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    background-color: white;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-color);
+    background-color: white;
+}
+
+.navbar-toggler-icon {
+    background-color: var(--secondary-color);
+}
+
+.jumbotron {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0;
+    animation: fadeIn 2s;
+    transition: background-color 0.3s;
+    }
+    
+    .jumbotron:hover {
+    background-color: var(--primary-color);
+    }
+    
+    @keyframes fadeIn {
+    0% {
+    opacity: 0;
+    }
+    100% {
+    opacity: 1;
+    }
+    }
+    
+    .jumbotron h1 {
+    font-size: 4rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px var(--primary-color);
+    transition: color 0.3s;
+    }
+    
+    .jumbotron p {
+    font-size: 2rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px var(--primary-color);
+    transition: color 0.3s;
+    }
+    
+    .jumbotron:hover h1,
+    .jumbotron:hover p {
+    color: white;
+    }
+    
+    .jumbotron button {
+    transition: all 0.3s;
+    }
+    
+    .jumbotron:hover a {
+    background-color: #fff;
+    color: var(--primary-color);
+    box-shadow: 0px 8px 15px var(--primary-color);
+    transform: translateY(-7px);
+    }
+
+
+    button {
+        background-color: var(--primary-color);
+        border: none;
+        color: #fff;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+        box-shadow: 0px 8px 15px var(--primary-color);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      
+      button:hover {
+        background-color: #fff;
+        color: var(--primary-color);
+        box-shadow: 0px 15px 20px var(--primary-color);
+        transform: translateY(-7px);
+      }
+    
+      .submit {
+        background-color: var(--primary-color);
+        border: none;
+        color: #fff;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+        box-shadow: 0px 8px 15px var(--primary-color);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      
+      .submit:hover {
+        background-color: #fff;
+        color: var(--primary-color);
+        box-shadow: 0px 15px 20px var(--primary-color);
+        transform: translateY(-7px);
+      }

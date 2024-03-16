@@ -1,0 +1,1 @@
+dc_[roboflow-100/cotton-plant-disease]

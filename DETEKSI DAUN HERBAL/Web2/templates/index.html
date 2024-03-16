@@ -1,0 +1,112 @@
+{% include "header.html" %}
+{% block content %}
+<center>
+    <style>
+        :root {
+            --panjangObjek : 50%;
+        }
+
+        #ambilGambar {
+            width: var(--panjangObjek);
+            height: 50px;
+            font-size: 25px;
+            background-color: var(--second);
+            color : white;
+            border-radius: 10px;
+            border-color: var(--second);
+        }
+
+        #unggahGambar {
+            width: var(--panjangObjek);
+            height: 50px;
+            font-size: 25px;
+            background-color: var(--second);
+            color : white;
+            border-radius: 10px;
+            border-color: var(--second);
+        }
+
+        #webcam {
+            width: var(--panjangObjek);
+        }
+    </style>
+    <div class="webcamContainer">
+        <h1>Sistem Klasifikasi Daun Herbal</h1>
+        <video id="webcam" autoplay></video>
+        <br>
+        <button id="ambilGambar">Ambil Gambar</button>
+        <canvas id="gambarCanvas" style="display: none;"></canvas>
+        <br>
+        <img id="gambarHasil" src="" alt="Hasil Gambar" style="display: none;">
+    </div>
+    <br><br><br>    
+    <div class="webcamContainer">
+        <h1>Upload File</h1>
+        <form id="uploadForm" action="{{ url_for('upload_img') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" id="file"><br><br>
+            <img type="hidden" id="gambarHasil" name="gambarHasil" style="display: none;">
+            <input type="submit" value="Upload Gambar" id="unggahGambar">
+        </form>
+    </div>
+</center>
+    <script>
+        const videoElement = document.getElementById("webcam");
+        const canvasElement = document.getElementById("gambarCanvas");
+        const ambilGambarButton = document.getElementById("ambilGambar");
+
+        // Fungsi untuk mengambil gambar dari video
+        async function ambilGambar() {
+            const context = canvasElement.getContext("2d");
+            context.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+
+            // Dapatkan gambar dari canvas dalam format base64
+            const gambarData = canvasElement.toDataURL("image/png");
+
+            // Tampilkan gambar hasil
+            const gambarHasil = document.getElementById("gambarHasil");
+            gambarHasil.src = gambarData;
+            gambarHasil.style.display = "block";
+
+            // Kirim gambarData ke server
+            fetch("{{ url_for('upload') }}", {
+                method: "POST",
+                body: JSON.stringify({ file: gambarData }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Tampilkan gambar hasil
+                    const gambarHasil = document.getElementById("gambarHasil");
+                    gambarHasil.src = "static/uploads/" + data.filename;
+                    gambarHasil.style.display = "block";
+                    window.location.href = "uploads/" + data.filename;
+                } else {
+                    console.error("Gagal mengupload gambar:", data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Gagal mengirim gambar ke server:", error);
+            });
+        }
+
+        // Panggil ambilGambar() saat tombol diklik
+        ambilGambarButton.addEventListener("click", ambilGambar);
+
+        // Panggil aksesWebcam() saat halaman dimuat
+        async function aksesWebcam() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error("Gagal mengakses webcam:", error);
+            }
+        }
+
+        // Panggil aksesWebcam() saat halaman dimuat
+        aksesWebcam();
+    </script>
+
+{% endblock %}

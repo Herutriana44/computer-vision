@@ -1,0 +1,2 @@
+healthychicken_[beproject/chickendetection-video]
+sickchicken_[beproject/chickendetection-video]

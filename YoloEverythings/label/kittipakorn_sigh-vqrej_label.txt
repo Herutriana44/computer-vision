@@ -1,0 +1,7 @@
+AI_[kittipakorn/sigh-vqrej]
+hand_language_[kittipakorn/sigh-vqrej]
+hello_[kittipakorn/sigh-vqrej]
+testing_[kittipakorn/sigh-vqrej]
+thank_you_[kittipakorn/sigh-vqrej]
+this_is_[kittipakorn/sigh-vqrej]
+translate_[kittipakorn/sigh-vqrej]

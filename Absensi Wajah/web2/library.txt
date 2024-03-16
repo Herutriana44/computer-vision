@@ -1,0 +1,9 @@
+flask
+opencv-python
+numpy
+keras
+tensorflow
+mysql-connector-python
+matplotlib
+mediapipe
+scikit-learn
